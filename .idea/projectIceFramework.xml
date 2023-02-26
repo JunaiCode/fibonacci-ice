@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="IceFramework">
+    <ice-frameworks>
+      <item url="file:///opt/homebrew/Cellar/ice/3.7.8">
+        <include />
+      </item>
+    </ice-frameworks>
+  </component>
+</project>
