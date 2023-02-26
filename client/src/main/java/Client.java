@@ -18,11 +18,34 @@ public class Client
             {
                 throw new Error("Invalid proxy");
             }
-            printer.printString("Hello World!");
+
+            getData(printer);
+            /*printer.printString("Hello World!");
             Scanner sc = new Scanner(System.in);
             int number = sc.nextInt();
-            printer.fibonacci(number);
+            printer.fibonacci(number);*/
 
+        }
+    }
+    public static void getData(Demo.PrinterPrx printer)
+    {
+        Scanner sc = new Scanner(System.in);
+        int numero;
+        boolean continuar = true;
+        while (continuar) {
+            System.out.print("Ingresa un número: ");
+            if (sc.hasNextInt()) {
+                numero = sc.nextInt();
+                int resultado = printer.fibonacci(numero);
+                System.out.println("El termino " + numero + " ésimo de la serie es: " + resultado);
+            } else {
+                if(sc.next().equals("exit")){
+                    continuar = false;
+                }else{
+                    System.out.println("Entrada inválida, intenta de nuevo");
+                }
+
+            }
         }
     }
 }
