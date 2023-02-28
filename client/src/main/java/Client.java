@@ -1,9 +1,10 @@
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Client
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws UnknownHostException {
         java.util.List<String> extraArgs = new java.util.ArrayList<>();
 
         try(com.zeroc.Ice.Communicator communicator = com.zeroc.Ice.Util.initialize(args,"config.client",extraArgs))
@@ -27,16 +28,17 @@ public class Client
 
         }
     }
-    public static void getData(Demo.PrinterPrx printer)
-    {
+    public static void getData(Demo.PrinterPrx printer) throws UnknownHostException {
         Scanner sc = new Scanner(System.in);
         int numero;
+        String hostname = Inet4Address.getLocalHost().getHostName();
+
         boolean continuar = true;
         while (continuar) {
             System.out.print("Ingresa un número: ");
             if (sc.hasNextInt()) {
                 numero = sc.nextInt();
-                int resultado = printer.fibonacci(numero);
+                int resultado = printer.fibonacci(numero,hostname);
                 System.out.println("El termino " + numero + " ésimo de la serie es: " + resultado);
             } else {
                 if(sc.next().equals("exit")){

@@ -53,38 +53,40 @@ public interface PrinterPrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
-    default int fibonacci(int a)
+    default int fibonacci(int a, String host)
     {
-        return fibonacci(a, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        return fibonacci(a, host, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default int fibonacci(int a, java.util.Map<String, String> context)
+    default int fibonacci(int a, String host, java.util.Map<String, String> context)
     {
-        return _iceI_fibonacciAsync(a, context, true).waitForResponse();
+        return _iceI_fibonacciAsync(a, host, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Integer> fibonacciAsync(int a)
+    default java.util.concurrent.CompletableFuture<java.lang.Integer> fibonacciAsync(int a, String host)
     {
-        return _iceI_fibonacciAsync(a, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_fibonacciAsync(a, host, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Integer> fibonacciAsync(int a, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<java.lang.Integer> fibonacciAsync(int a, String host, java.util.Map<String, String> context)
     {
-        return _iceI_fibonacciAsync(a, context, false);
+        return _iceI_fibonacciAsync(a, host, context, false);
     }
 
     /**
      * @hidden
      * @param iceP_a -
+     * @param iceP_host -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Integer> _iceI_fibonacciAsync(int iceP_a, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Integer> _iceI_fibonacciAsync(int iceP_a, String iceP_host, java.util.Map<String, String> context, boolean sync)
     {
         com.zeroc.IceInternal.OutgoingAsync<java.lang.Integer> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "fibonacci", null, sync, null);
         f.invoke(true, context, null, ostr -> {
                      ostr.writeInt(iceP_a);
+                     ostr.writeString(iceP_host);
                  }, istr -> {
                      int ret;
                      ret = istr.readInt();

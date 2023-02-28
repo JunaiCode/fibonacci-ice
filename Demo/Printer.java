@@ -19,7 +19,7 @@ public interface Printer extends com.zeroc.Ice.Object
 {
     void printString(String s, com.zeroc.Ice.Current current);
 
-    int fibonacci(int a, com.zeroc.Ice.Current current);
+    int fibonacci(int a, String host, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -75,9 +75,11 @@ public interface Printer extends com.zeroc.Ice.Object
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();
         int iceP_a;
+        String iceP_host;
         iceP_a = istr.readInt();
+        iceP_host = istr.readString();
         inS.endReadParams();
-        int ret = obj.fibonacci(iceP_a, current);
+        int ret = obj.fibonacci(iceP_a, iceP_host, current);
         com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
         ostr.writeInt(ret);
         inS.endWriteParams(ostr);
