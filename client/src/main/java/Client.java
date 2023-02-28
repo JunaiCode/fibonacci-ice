@@ -32,14 +32,17 @@ public class Client
         Scanner sc = new Scanner(System.in);
         int numero;
         String hostname = Inet4Address.getLocalHost().getHostName();
-
         boolean continuar = true;
         while (continuar) {
             System.out.print("Ingresa un número: ");
             if (sc.hasNextInt()) {
                 numero = sc.nextInt();
-                int resultado = printer.fibonacci(numero,hostname);
-                System.out.println("El termino " + numero + " ésimo de la serie es: " + resultado);
+                if(numero>=0){
+                    int resultado = printer.fibonacci(numero,hostname);
+                    System.out.println("El termino " + numero + " ésimo de la serie es: " + resultado);
+                }else{
+                    System.out.println("Los numeros negativos no son validos");
+                }
             } else {
                 if(sc.next().equals("exit")){
                     continuar = false;
